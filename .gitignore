@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+env/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.log
+
+# Poetry
+poetry.lock
+
+# Node
+node_modules/
+.pnp
+.pnp.js
+dist/
+dist-ssr/
+*.local
+coverage/
+.vitest/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Data
+backend/data/*.csv
+backend/data/*.json
+!backend/data/.gitkeep
+
+# Logs
+logs/
+*.log
+

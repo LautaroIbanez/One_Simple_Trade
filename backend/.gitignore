@@ -1,0 +1,25 @@
+# Poetry
+poetry.lock
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+ENV/
+env/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.log
+
+# Data
+data/*.csv
+data/*.json
+!data/.gitkeep
+

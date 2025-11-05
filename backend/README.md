@@ -2,18 +2,26 @@
 
 This service fetches daily BTC market data, computes indicators (EMA20/EMA50, RSI14, MACD 12/26/9, ATR14, 30d volatility) and produces a daily BUY/HOLD/SELL recommendation with confidence and explanation.
 
+## Prerequisites
+
+- Python 3.11 or 3.12
+- Poetry (install: `curl -sSL https://install.python-poetry.org | python3 -`)
+
 ## Install
 
 ```bash
-python -m venv .venv
-. .venv/Scripts/activate  # Windows PowerShell: .venv\Scripts\Activate.ps1
-pip install -r backend/requirements.txt
+poetry install
 ```
 
 ## Run
 
 ```bash
-uvicorn app.main:app --reload --port 8000 --app-dir backend
+# With Poetry shell
+poetry shell
+uvicorn app.main:app --reload --port 8000
+
+# Or directly
+poetry run uvicorn app.main:app --reload --port 8000
 ```
 
 ## Endpoints
@@ -24,11 +32,18 @@ uvicorn app.main:app --reload --port 8000 --app-dir backend
 ## Testing
 
 ```bash
-pytest -q --maxfail=1 --disable-warnings backend
+poetry run pytest -q --maxfail=1 --disable-warnings
+poetry run ruff check .
+poetry run mypy app
 ```
 
-## Data Source
-- CoinGecko Market Chart (`https://api.coingecko.com/api/v3/coins/bitcoin/market_chart`)
+## Data Providers
+
+The backend uses a pluggable provider pattern. Default: **CoinGecko**.
+
+- `MarketDataProvider` (ABC): Base interface
+- `CoinGeckoProvider`: Current implementation
+- To add another provider: implement `MarketDataProvider` and configure in `MarketDataService`
 
 All responses include `as_of_utc` (ms) and `latency_ms` computed per request.
 

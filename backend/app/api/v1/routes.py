@@ -1,6 +1,6 @@
 import time
 from fastapi import APIRouter
-from app.services.market_data import MarketDataService
+from app.services.market_data import _service as market_data_service
 from app.services.indicators import compute_indicators
 from app.services.signal import decide_signal
 from app.models.schemas import MarketOhlcResponse, IndicatorPoint, SignalResponse
@@ -12,7 +12,7 @@ router = APIRouter()
 
 @router.get("/market/ohlc", response_model=MarketOhlcResponse)
 async def get_market_ohlc() -> MarketOhlcResponse:
-    df, as_of_utc, latency_ms = await MarketDataService.fetch_daily_ohlc()
+    df, as_of_utc, latency_ms = await market_data_service.fetch_daily_ohlc()
     ind = compute_indicators(df)
     candles = [
         IndicatorPoint(
@@ -32,7 +32,7 @@ async def get_market_ohlc() -> MarketOhlcResponse:
         asset="BTC",
         quote="USD",
         timeframe="1d",
-        source="CoinGecko",
+        source=market_data_service.provider_name,
         latency_ms=latency_ms,
         as_of_utc=as_of_utc,
         candles=candles,
@@ -41,7 +41,7 @@ async def get_market_ohlc() -> MarketOhlcResponse:
 
 @router.get("/signal", response_model=SignalResponse)
 async def get_signal() -> SignalResponse:
-    df, as_of_utc, latency_ms = await MarketDataService.fetch_daily_ohlc()
+    df, as_of_utc, latency_ms = await market_data_service.fetch_daily_ohlc()
     ind = compute_indicators(df)
     latest = ind.iloc[-1]
     signal, confidence, explanation = decide_signal(latest)

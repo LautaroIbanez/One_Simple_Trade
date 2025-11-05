@@ -18,9 +18,9 @@ def test_health():
 async def test_signal_endpoint_smoke(monkeypatch):
     # Avoid hitting external API by stubbing market data service
     import pandas as pd
-    from app.services.market_data import MarketDataService
+    from app.services.market_data import _service
 
-    async def fake_fetch():
+    async def fake_fetch(*args, **kwargs):
         df = pd.DataFrame({
             "timestamp": [1, 2, 3, 4, 5],
             "open": [100, 101, 102, 103, 104],
@@ -31,7 +31,7 @@ async def test_signal_endpoint_smoke(monkeypatch):
         })
         return df, 5, 1
 
-    monkeypatch.setattr(MarketDataService, "fetch_daily_ohlc", staticmethod(fake_fetch))
+    monkeypatch.setattr(_service, "fetch_daily_ohlc", fake_fetch)
 
     r = client.get("/v1/signal")
     assert r.status_code == 200

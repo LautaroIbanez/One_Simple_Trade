@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build
+dist/
+dist-ssr/
+*.local
+
+# Testing
+coverage/
+.vitest/
+
+# Logs
+*.log
+
+# Editor
+.vscode/
+.idea/
+
