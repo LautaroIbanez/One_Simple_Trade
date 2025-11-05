@@ -2,23 +2,33 @@
 
 All notable changes to this project will be documented in this file.
 
-## [Epic 0] - 2025-01-XX
+## [Epic 0] - 2025-01-XX (REHECHO - Versión Rigurosa)
 
-### Reset estratégico y baseline operable
+### Reset estratégico y baseline operable (con entregables verificables)
 
 #### Auditoría y cleanup
+- ✅ **Documento de auditoría real creado**: `docs/AUDIT_TECHNICAL_DEBT.md`
+  - Hallazgos críticos documentados con severidad y esfuerzo estimado
+  - Limitaciones reales de CoinGecko documentadas (OHLC sintetizado, solo diario)
+  - Plan de migración a Binance documentado (conceptual) en `docs/MIGRATION_PLAN.md`
 - ✅ Abstraída dependencia de CoinGecko en capa de proveedores intercambiables
   - Creada interfaz `MarketDataProvider` (ABC)
   - Implementado `CoinGeckoProvider` como proveedor por defecto
   - `MarketDataService` ahora acepta cualquier proveedor compatible
-  - Documentadas brechas: CoinGecko es dependencia externa, pero ahora intercambiable
+  - **Realidad**: Solo CoinGecko está implementado. Binance es plan conceptual.
 
 #### Monorepo real
 - ✅ Estructura reorganizada:
-  - `backend/` - FastAPI Python service
-  - `frontend/` - React/Vite TypeScript app (scaffold)
-  - `shared/` - Tipos TypeScript compartidos (`api.ts`)
-  - `ops/` - Scripts de infraestructura y deployment
+  - `backend/` - FastAPI Python service ✅ Funcional
+  - `frontend/` - React/Vite TypeScript app ✅ Scaffold funcional creado
+    - `src/App.tsx` - Componente básico que muestra estado del backend
+    - `src/App.test.tsx` - Tests básicos creados
+    - Requiere `pnpm install` para generar `pnpm-lock.yaml` y ejecutar
+  - `shared/` - Tipos TypeScript compartidos (`api.ts`) ✅
+  - `ops/` - Scripts de infraestructura ✅
+    - `health_check.sh` y `health_check.ps1` - Scripts funcionales
+    - `data_backup_conceptual.sh` - Placeholder documentado
+  - `docker-compose.yml` - Configuración básica para desarrollo ✅
 
 #### Tooling disciplinado
 - ✅ Backend:
@@ -32,16 +42,17 @@ All notable changes to this project will be documented in this file.
   - Prettier para formateo consistente
   - Vitest para testing con cobertura
 
-#### CI/CD mínimo pero serio
+#### CI/CD riguroso
 - ✅ GitHub Actions con matrices:
   - Backend: Python 3.11 y 3.12
   - Frontend: Node.js 20
 - ✅ Pipeline ejecuta:
   - Linting (Ruff, ESLint)
-  - Type checking (mypy, tsc)
+  - Type checking (mypy, tsc) - **mypy sin `|| true`, falla build si hay errores**
   - Tests (pytest, vitest)
   - Builds (vite build)
   - Security audits (pip-audit, npm audit)
+- ✅ Correcciones: Removido `|| true` de mypy, audit warnings no bloquean pero se reportan
 
 #### Documentación base
 - ✅ README raíz con alcance, arquitectura y comandos

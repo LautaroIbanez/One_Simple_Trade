@@ -29,7 +29,32 @@ Decision:
 Confidence: |score| clipped to [0,1].
 
 ## Assumptions and Limitations
-- Close-only market data from CoinGecko; OHLC synthesized for ATR. This simplifies but can under/overestimate intraday ranges.
+
+### Data Quality Limitations (CRÍTICO)
+
+**OHLC sintetizado desde close prices:**
+- CoinGecko Market Chart API solo proporciona precios de cierre (`close`)
+- Open/High/Low se sintetizan usando heurísticas simples:
+  - `open = close.shift(1)` (open del día = close del día anterior)
+  - `high = max(open, close)`
+  - `low = min(open, close)`
+- **Impacto**: Esto puede subestimar o sobreestimar rangos intraday reales, afectando:
+  - Cálculo de ATR (Average True Range)
+  - Volatilidad estimada
+  - Señales de riesgo
+
+**Datos diarios únicamente:**
+- CoinGecko solo ofrece granularidad diaria
+- No hay datos intraday disponibles
+- Señales solo pueden generarse una vez por día
+
+**Sin validación de calidad:**
+- No hay comparación con otras fuentes de datos
+- No hay detección de outliers o datos anómalos
+- Ver `docs/MIGRATION_PLAN.md` para plan de migración a Binance (conceptual)
+
+### Model Limitations
+
 - Daily timeframe; no intraday signals.
 - No transaction costs/slippage modeled in the live signal. Backtests will include simple fee assumption.
 - Model is heuristic, not optimized by ML; easy to audit.
