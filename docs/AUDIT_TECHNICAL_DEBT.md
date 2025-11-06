@@ -35,10 +35,11 @@
 - [ ] Implementar `BinanceProvider` como alternativa - **DEFERIDO A FUTURA EPIC**
 - [ ] Agregar health checks de proveedores - **DEFERIDO A FUTURA EPIC**
 - [ ] Implementar fallback automático si proveedor principal falla - **DEFERIDO A FUTURA EPIC**
+- [ ] Criterio mínimo de aceptación de fallback: prueba que simule fallo del proveedor primario y active proveedor secundario (stub) devolviendo datos válidos.
 
-**Estado**: ✅ Limitaciones documentadas. Abstracción de proveedores implementada. Plan de migración conceptual creado. Implementación real de Binance deferida a futura epic.
+**Estado**: ✅ Limitaciones documentadas. Abstracción de proveedores implementada. Plan de migración conceptual creado. Implementación real de Binance y fallback automático aún pendientes.
 
-**Prioridad**: ALTA (parcialmente resuelto - documentado, implementación real deferida)
+**Prioridad**: ALTA (parcialmente resuelto - documentado; implementación real y fallback pendientes)
 
 ---
 
