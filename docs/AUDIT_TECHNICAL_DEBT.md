@@ -42,28 +42,26 @@
 
 ---
 
-### 2. Frontend vacío (CRÍTICO)
+### 2. Frontend scaffold funcional (CRÍTICO resuelto)
 
 **Estado actual:**
-- Solo archivos de configuración (package.json, tsconfig.json, etc.)
-- No existe código fuente en `frontend/src/`
-- No hay componentes, tests, ni assets
-- `pnpm-lock.yaml` no existe (nunca se ejecutó `pnpm install`)
+- Existe código fuente en `frontend/src/` (App.tsx, main.tsx, tests).
+- `pnpm-lock.yaml` está versionado en el repositorio.
+- CI instala con `pnpm install --frozen-lockfile` y valida lint/tests/build.
 
 **Impacto:**
-- CI/CD frontend no puede validar nada real
-- Tooling configurado pero sin uso
+- La CI/CD frontend valida un scaffold real y reproducible.
 
 **Plan de acción:**
 - [x] Crear estructura mínima funcional: `src/App.tsx`, `src/main.tsx`, `index.html` (2025-01-XX)
 - [x] Componente mínimo que muestre estado de backend (2025-01-XX)
 - [x] Test básico que valide renderizado (2025-01-XX)
-- [x] Generar `pnpm-lock.yaml` ejecutando `pnpm install` (2025-01-XX) - Ver `frontend/scripts/generate-lockfile.sh`
-- [ ] Verificar que build y tests pasen en CI - **REQUIERE pnpm-lock.yaml EN REPO**
+- [x] Generar y versionar `pnpm-lock.yaml` (2025-11-06)
+- [x] Verificar que build y tests pasen en CI con `--frozen-lockfile` (2025-11-06)
 
-**Estado**: ✅ Scaffold funcional creado. Tests básicos implementados. `pnpm-lock.yaml` debe generarse localmente y agregarse al repo.
+**Estado**: ✅ Scaffold funcional creado y validado en CI. Lockfile versionado.
 
-**Prioridad**: ALTA (resuelto parcialmente - requiere pnpm-lock.yaml en repo)
+**Prioridad**: ALTA (✅ RESUELTO)
 
 ---
 
@@ -150,9 +148,9 @@
 ## Acciones Pendientes (Bloqueantes para cerrar Epic 0)
 
 1. ✅ **CI/CD security audit riguroso** - CORREGIDO (2025-01-XX): Security audit ahora falla build con vulnerabilidades altas
-2. ⚠️ **pnpm-lock.yaml debe generarse y agregarse al repo** - Ver `frontend/scripts/generate-lockfile.sh` y `docs/EPIC0_CLOSING.md`
+2. ✅ **pnpm-lock.yaml generado y agregado al repo** (2025-11-06)
 
-**Estado final**: Epic 0 casi completa. Solo falta agregar `pnpm-lock.yaml` al repositorio (acción manual requerida).
+**Estado final**: ✅ Epic 0 cerrada. Reproducibilidad garantizada en frontend con lockfile versionado.
 
 ---
 

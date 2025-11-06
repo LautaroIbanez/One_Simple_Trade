@@ -60,7 +60,7 @@ one-simple-trade/
 - ✅ `src/App.tsx` - Componente React que muestra estado del backend
 - ✅ `src/App.test.tsx` - Tests básicos con Vitest y Testing Library
 - ✅ `index.html`, `main.tsx`, estilos básicos
-- ⚠️ Requiere `pnpm install` para generar `pnpm-lock.yaml` y ejecutar
+- ✅ `pnpm-lock.yaml` versionado. La CI instala con `--frozen-lockfile`.
 
 **Ops funcionales:**
 - ✅ Scripts de health check (bash y PowerShell)
@@ -133,20 +133,14 @@ Ver `docs/AUDIT_TECHNICAL_DEBT.md` para detalles completos:
 
 - ✅ Documento de auditoría completo con hallazgos concretos - **Estado actualizado a "Completado"**
 - ✅ Plan de migración a Binance documentado (conceptual)
-- ✅ Frontend mínimo funcional con tests que pasan - ⚠️ **Requiere pnpm-lock.yaml en repo** (ver acciones pendientes)
+- ✅ Frontend mínimo funcional con tests que pasan - ✅ `pnpm-lock.yaml` en repo y CI pasando
 - ✅ Scripts de ops básicos funcionales
 - ✅ CI/CD riguroso sin `|| true` - ✅ mypy riguroso, ✅ security audit ahora riguroso
 - ✅ Documentación que refleje realidad del proyecto
 
 ## Acciones Pendientes (Bloqueantes)
 
-1. **pnpm-lock.yaml debe generarse y agregarse al repo**
-   - Scripts creados: `frontend/scripts/generate-lockfile.sh` y `generate-lockfile.ps1`
-   - Ejecutar: `cd frontend && pnpm install` (o usar scripts)
-   - **IMPORTANTE**: Agregar `pnpm-lock.yaml` al repositorio antes de considerar Epic 0 cerrada
-
-2. **Verificar que CI/CD pasa con pnpm-lock.yaml**
-   - Una vez agregado el lockfile, verificar que el pipeline frontend pasa completamente
+Ninguna. `pnpm-lock.yaml` está versionado y la CI pasa con `--frozen-lockfile`.
 
 ## Verificación
 
