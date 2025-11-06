@@ -21,3 +21,4 @@ EXPOSE 5173
 # Run development server
 CMD ["pnpm", "dev", "--host", "0.0.0.0"]
 
+

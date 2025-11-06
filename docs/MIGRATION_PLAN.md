@@ -76,3 +76,4 @@ Este plan es conceptual. La implementación real requerirá:
 - Decisión sobre cuál usar por defecto
 - Plan de rollback si hay problemas
 
+

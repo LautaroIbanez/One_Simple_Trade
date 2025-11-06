@@ -26,3 +26,4 @@ class MarketDataProvider(ABC):
         """Return the provider's display name."""
         pass
 
+

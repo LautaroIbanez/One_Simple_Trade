@@ -56,3 +56,4 @@ class CoinGeckoProvider(MarketDataProvider):
         cache.set(cache_key, result, settings.cache_ttl_seconds_market)
         return result
 
+

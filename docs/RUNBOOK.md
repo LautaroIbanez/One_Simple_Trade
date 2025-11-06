@@ -124,3 +124,4 @@ Para problemas operativos, revisar:
 - `docs/MIGRATION_PLAN.md` - Plan de migración a Binance
 - `CHANGELOG.md` - Historial de cambios
 
+

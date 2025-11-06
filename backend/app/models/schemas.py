@@ -44,3 +44,4 @@ class SignalResponse(BaseModel):
     methodology_url: str
 
 
+
