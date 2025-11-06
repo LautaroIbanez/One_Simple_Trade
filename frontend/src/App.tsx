@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
-import type { HealthResponse } from "../../shared/types/api";
+import type { SignalResponse } from "../../shared/types/api";
 
 function App() {
-  const [health, setHealth] = useState<HealthResponse | null>(null);
+  const [signal, setSignal] = useState<SignalResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("/health")
+    fetch("/v1/signal")
       .then((res) => res.json())
-      .then((data: HealthResponse) => {
-        setHealth(data);
+      .then((data: SignalResponse) => {
+        setSignal(data);
         setLoading(false);
       })
       .catch((err) => {
@@ -41,13 +41,19 @@ function App() {
   return (
     <div className="app">
       <h1>One Simple Trade</h1>
-      <div className="status">
-        <p>Backend Status: {health?.status}</p>
-        <p>Timestamp: {health?.timestamp ? new Date(health.timestamp).toISOString() : "N/A"}</p>
-      </div>
-      <p className="placeholder">
-        Frontend scaffold functional. Signal display coming in Epic 2.
-      </p>
+      <section className="signal-card">
+        <h2>Daily Signal</h2>
+        <p>
+          Signal: <strong data-testid="signal-value">{signal?.signal ?? "-"}</strong>
+        </p>
+        <p>
+          Confidence: <span data-testid="confidence-value">{signal ? `${Math.round(signal.confidence * 100)}%` : "-"}</span>
+        </p>
+        <p>
+          As of: <time data-testid="asof-value">{signal ? new Date(signal.as_of_utc).toISOString() : "-"}</time>
+        </p>
+      </section>
+      <p className="placeholder">Scaffold listo. Layout base para Epic 2.</p>
     </div>
   );
 }

@@ -117,7 +117,7 @@
 - [x] Documentar qué NO existe aún (2025-01-XX)
 - [x] Crear runbook operativo básico (2025-01-XX) - `docs/RUNBOOK.md`
 
-**Estado**: ✅ README actualizado con estado real (✅/🔄/❌). Limitaciones documentadas. Runbook creado.
+**Estado**: ✅ README actualizado con estado real (✅/🔄/❌). Limitaciones documentadas. Runbook creado. Frontend scaffold ahora muestra la señal y valida contrato UI/API en tests (Vitest).
 
 **Prioridad**: BAJA (✅ RESUELTO)
 
